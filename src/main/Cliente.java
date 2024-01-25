@@ -32,8 +32,6 @@ public static void main(String[] args) {
 		String[] mensajes = {
 				"¿Cómo te llamas?",
 				"¿Cuántas líneas de código tienes?",
-				"¿Otro mensaje?",
-				"Otro mensaje"
 				};
 		
 		Random rdn = new Random();

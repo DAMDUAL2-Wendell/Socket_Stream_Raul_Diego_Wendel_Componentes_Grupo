@@ -11,6 +11,11 @@ public class Servidor {
 	
 	public static void main(String[] args) {
 		
+		String[] mensajes = {
+				"¿Cómo te llamas?",
+				"¿Cuántas líneas de código tienes?",
+				};
+		
 		try {
 			System.out.println("Creando socket servidor");
 			
@@ -46,6 +51,13 @@ public class Servidor {
 					mensajeMostrar = "No he entendido la pregunta";
 				}else {
 					mensajeMostrar = mensajeRecibido.substring(signoInterrogacion, mensajeRecibido.length());
+					if(mensajeRecibido.equals(mensajes[0])) {
+						mensajeMostrar = "Me llamo Práctica Socket Stream";
+					}else if (mensajeRecibido.equals(mensajes[1])) {
+						mensajeMostrar = "Tengo 82 líneas de código";
+					}else {
+						mensajeMostrar = "No he entendido la pregunta";
+					}
 				}
 				
 				
