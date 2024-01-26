@@ -7,53 +7,50 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-
 public class Cliente {
-public static void main(String[] args) {
-		
-	try {
-		System.out.println("Creando socket cliente.");
-		Socket clienteSocket = new Socket();
-		
-		System.out.println("Estableciendo conexion...");
-		String servidor = "localhost";
-		int puerto = 1111;
-		InetSocketAddress address = new InetSocketAddress(servidor,puerto);
-		
-		System.out.println("Conectando socket con servidor: " + servidor + ":" + puerto);
-		clienteSocket.connect(address);
-		
-		InputStream inputStream = clienteSocket.getInputStream();
-		OutputStream outputStream = clienteSocket.getOutputStream();
-		
-		System.out.println("Enviando mensaje...");
-		
-		// Mensajes a enviar
-		String[] mensajes = {
-				"¿Cómo te llamas?",
-				"¿Cuántas líneas de código tienes?",
-				};
-		
-		Random rdn = new Random();
-		
-	
-		String mensaje = mensajes[rdn.nextInt(0,4)];
-		
-		outputStream.write(mensaje.getBytes());
-		
-		System.out.println("Mensaje enviado: " + mensaje);
-		
-		System.out.println("Cerrando el socket cliente");
-		
-		clienteSocket.close();
-		
-		System.out.println("Terminado");
+    public static void main(String[] args) {
+        try {
+            System.out.println("Creando socket cliente.");
+            
+            // Crear un nuevo socket para cada ejecución del cliente
+            Socket clienteSocket = new Socket();
 
-		
-		
-	} catch (IOException e) {
-		e.printStackTrace();
-	}
-	
-}
+            System.out.println("Estableciendo conexion...");
+            String servidor = "localhost";
+            int puerto = 1111;
+            InetSocketAddress address = new InetSocketAddress(servidor, puerto);
+
+            System.out.println("Conectando socket con servidor: " + servidor + ":" + puerto);
+            clienteSocket.connect(address);
+
+            InputStream inputStream = clienteSocket.getInputStream();
+            OutputStream outputStream = clienteSocket.getOutputStream();
+
+            System.out.println("Enviando mensaje...");
+
+            // Mensajes a enviar
+            String[] mensajes = {
+                    "¿Cómo te llamas?",
+                    "¿Cuántas líneas de código tienes?",
+            };
+
+            Random rdn = new Random();
+
+            String mensaje = mensajes[rdn.nextInt(0, 2)];
+
+            outputStream.write(mensaje.getBytes());
+
+            System.out.println("Mensaje enviado: " + mensaje);
+
+            System.out.println("Cerrando el socket cliente");
+
+            // Cerrar el socket del cliente después de enviar el mensaje
+            clienteSocket.close();
+
+            System.out.println("Terminado");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
